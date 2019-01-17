@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ActivityAutostart</string>
+    <string name="click_button_to_start">Click button to start</string>
+    <string name="start">Start</string>
+    <string name="autostart_interval_min">Autostart interval (min):</string>
+    <string name="live_time_sec">Live time (sec):</string>
+    <string name="confirm">Confirm</string>
+</resources>
