@@ -65,8 +65,10 @@
     <Compile Include="Recycler\SelectorRecyclerView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routers\DetailRouter.cs" />
     <Compile Include="Routers\MainRouter.cs" />
     <Compile Include="Routers\SelectorRouter.cs" />
+    <Compile Include="Views\DetailView.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\SelectorView.cs" />
   </ItemGroup>
@@ -148,6 +150,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\view_selector.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\view_detail.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

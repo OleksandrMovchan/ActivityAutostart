@@ -71,6 +71,7 @@ namespace ActivityAutostart.Activities
             var router = new SelectorRouter(new WeakReference<Context>(this));
 
             _controller = new SelectorController(view, router);
+            _controller.Init();
         }
 
         private void SetIntoShared()
@@ -89,7 +90,7 @@ namespace ActivityAutostart.Activities
             int.TryParse(selectorTime.Text, out int showingTime);
 
             TimingRepository.GetInstance().Interval = interval;
-            TimingRepository.GetInstance().Interval = showingTime;
+            TimingRepository.GetInstance().ShowingTime = showingTime;
 
             editor.PutStringSet(DataKey, list);
             editor.PutInt(IntervalKey, interval);

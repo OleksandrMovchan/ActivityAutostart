@@ -1,5 +1,4 @@
 ﻿using System;
-using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -19,7 +18,7 @@ namespace ActivityAutostart.Recycler
         public void Init(DataModel dataModel)
         {
             var selectorMark = ItemView.FindViewById<ImageView>(Resource.Id.selectorMark);
-            selectorMark.Visibility = dataModel.IsChecked ? ViewStates.Invisible : ViewStates.Visible;
+            selectorMark.Visibility = dataModel.IsChecked ? ViewStates.Visible : ViewStates.Invisible;
 
             var selectorTextView = ItemView.FindViewById<TextView>(Resource.Id.selectorCheckText);
             selectorTextView.Text = dataModel.Id;

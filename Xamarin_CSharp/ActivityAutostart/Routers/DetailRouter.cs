@@ -1,17 +1,15 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using Portable.Controllers.Selector.Interfaces;
+using Portable.Controllers.Detail.Interfaces;
 
 namespace ActivityAutostart.Routers
 {
-    public class SelectorRouter : ISelectorRouter
+    public class DetailRouter : IDetailRouter
     {
-        public event Action OnReturn;
-
         private WeakReference<Context> _context;
 
-        public SelectorRouter(WeakReference<Context> context)
+        public DetailRouter(WeakReference<Context> context)
         {
             _context = context;
         }

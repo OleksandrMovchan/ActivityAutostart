@@ -21,8 +21,7 @@ namespace Portable.Controllers.Selector
             _router = router ?? throw new ArgumentException(nameof(router));
             _dataModelsList = new List<DataModel>();
         }
-
-
+        
         public void Init()
         {
             List<SomeData> dataList = DataRepository.GetInstance().AllData;
@@ -38,15 +37,16 @@ namespace Portable.Controllers.Selector
         public void Subscribe()
         {
             if (_isSubscribed) return;
+            _view.Subscribe();
             _view.OnButtonClick += GoBack;
             _view.OnItemClick += ChangeSelection;
             _isSubscribed = true;
         }
-
-
+        
         public void Unsubscribe()
         {
             if (!_isSubscribed) return;
+            _view.Unsubscribe();
             _view.OnButtonClick -= GoBack;
             _view.OnItemClick -= ChangeSelection;
             _isSubscribed = false;

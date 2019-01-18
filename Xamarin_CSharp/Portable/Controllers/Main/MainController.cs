@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Timers;
 using Portable.Controllers.Main.Interfaces;
 using Portable.Data;
 using Portable.Repositories;
+using Timer = System.Timers.Timer;
 
 namespace Portable.Controllers.Main
 {
@@ -52,6 +54,8 @@ namespace Portable.Controllers.Main
             Timer timer = new Timer(interval);
             timer.Elapsed += NextInterval;
             timer.Start();
+            
+            ShowNext();
         }
 
         private void NextInterval(object sender, ElapsedEventArgs e)

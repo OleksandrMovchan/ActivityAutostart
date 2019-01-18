@@ -12,6 +12,8 @@ namespace ActivityAutostart.Recycler
     [Register("ActivityAutostart.Recycler.SelectorRecyclerView")]
     public class SelectorRecyclerView : RecyclerView
     {
+        public event Action<string> OnSelectorClick;
+
         public SelectorRecyclerView(Context context) : base(context)
         {
         }
@@ -22,6 +24,27 @@ namespace ActivityAutostart.Recycler
 
         public SelectorRecyclerView(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
         {
+        }
+
+        public void Subscribe()
+        {
+            if (GetAdapter() is SelectorAdapter adapter)
+            {
+                adapter.OnSelectorClick += SelectorClicked;
+            }
+        }
+        
+        public void Unsubscribe()
+        {
+            if (GetAdapter() is SelectorAdapter adapter)
+            {
+                adapter.OnSelectorClick -= SelectorClicked;
+            }
+        }
+
+        private void SelectorClicked(string id)
+        {
+            OnSelectorClick?.Invoke(id);
         }
 
         public void SetAllData(List<DataModel> data)

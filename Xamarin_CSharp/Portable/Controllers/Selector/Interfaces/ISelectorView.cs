@@ -9,6 +9,8 @@ namespace Portable.Controllers.Selector.Interfaces
         event Action<string> OnItemClick;
         event Action OnButtonClick;
 
+        void Subscribe();
+        void Unsubscribe();
         void SetAllData(List<DataModel> data);
     }
 }

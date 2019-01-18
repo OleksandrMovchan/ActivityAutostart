@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Detail\DetailController.cs" />
+    <Compile Include="Controllers\Detail\Interfaces\IDetailController.cs" />
+    <Compile Include="Controllers\Detail\Interfaces\IDetailRouter.cs" />
+    <Compile Include="Controllers\Detail\Interfaces\IDetailView.cs" />
     <Compile Include="Controllers\Main\Interfaces\IMainRouter.cs" />
     <Compile Include="Controllers\Main\Interfaces\IMainView.cs" />
     <Compile Include="Controllers\Main\Interfaces\IMainController.cs" />
