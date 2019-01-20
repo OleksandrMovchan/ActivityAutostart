@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Widget;
 using Portable.Controllers.Main;
 using Portable.Controllers.Main.Interfaces;
 
@@ -21,13 +22,9 @@ namespace ActivityAutostart
             SetContentView(Resource.Layout.activity_main);
             InitMainController();
             _controller.Subscribe();
-        }
-
-        protected override void OnPause()
-        {
-            base.OnPause();
-
-            //_controller.Unsubscribe();
+            var btn = FindViewById<Button>(Resource.Id.mainBtnStart);
+            btn.PerformClick();
+            btn.Clickable = false;
         }
 
         private void InitMainController()

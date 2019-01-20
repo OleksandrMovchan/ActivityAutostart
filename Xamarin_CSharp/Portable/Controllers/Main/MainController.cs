@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Timers;
 using Portable.Controllers.Main.Interfaces;
 using Portable.Data;
@@ -10,7 +9,6 @@ namespace Portable.Controllers.Main
 {
     public class MainController : IMainController
     {
-        private int _interval;
         private int _counter = 0;
         private bool _isTimerStarted = false;
         private bool _isSubscribed = false;

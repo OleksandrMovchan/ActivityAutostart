@@ -20,6 +20,9 @@ namespace ActivityAutostart.Activities
         private const string DataKey = "data";
         private const string IntervalKey = "interval";
         private const string ShowingKey = "showing";
+        private const string SkipKey = "skip";
+
+        private bool _wasShowed = false;
 
         private ISelectorController _controller;
 
@@ -37,6 +40,12 @@ namespace ActivityAutostart.Activities
             InitController();
             _controller.Subscribe();
             _controller.OnReturn += SetIntoShared;
+
+            if (_wasShowed)
+            {
+                var button = FindViewById<Button>(Resource.Id.selectorBtnConfirm);
+                button.PerformClick();
+            }
         }
 
         protected override void OnPause()
@@ -53,6 +62,7 @@ namespace ActivityAutostart.Activities
             var dataIds = preferences.GetStringSet(DataKey, new List<string>());
             var interval = preferences.GetInt(IntervalKey, 240);
             var showingTime = preferences.GetInt(ShowingKey, 30);
+            _wasShowed = preferences.GetBoolean(SkipKey, false);
 
             DataRepository.GetInstance().SetCheckedData(dataIds.ToList());
 
@@ -92,6 +102,7 @@ namespace ActivityAutostart.Activities
             editor.PutStringSet(DataKey, list);
             editor.PutInt(IntervalKey, interval);
             editor.PutInt(ShowingKey, showingTime);
+            editor.PutBoolean(SkipKey, true);
             editor.Apply();
 
             RunOnUiThread(OnBackPressed);
