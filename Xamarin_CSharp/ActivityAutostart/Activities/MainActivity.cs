@@ -22,14 +22,7 @@ namespace ActivityAutostart
             InitMainController();
             _controller.Subscribe();
         }
-
-        protected override void OnPause()
-        {
-            base.OnPause();
-
-            //_controller.Unsubscribe();
-        }
-
+        
         private void InitMainController()
         {
             var view = FindViewById<MainView>(Resource.Id.mainView);
@@ -44,10 +37,6 @@ namespace ActivityAutostart
             if (requestCode == Constants.RequestCodeSelector)
             {
                 _controller.RunTimer();
-            }
-            else if (requestCode == Constants.RequestCodeDetail)
-            {
-                _controller.ShowNext();
             }
         }
     }

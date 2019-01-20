@@ -21,7 +21,7 @@ namespace ActivityAutostart.Routers
             {
                 var intent = new Intent(context, typeof(DetailActivity));
                 intent.PutExtra(Constants.Id, id);
-                (context as Activity)?.StartActivityForResult(intent, Constants.RequestCodeDetail);
+                (context as Activity)?.StartActivity(intent);
             }
         }
 

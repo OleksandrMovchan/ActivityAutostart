@@ -10,8 +10,6 @@ namespace Portable.Controllers.Main
 {
     public class MainController : IMainController
     {
-        private int _interval;
-        private int _counter = 0;
         private bool _isTimerStarted = false;
         private bool _isSubscribed = false;
 
@@ -67,15 +65,10 @@ namespace Portable.Controllers.Main
         {
             List<SomeData> checkedData = DataRepository.GetInstance().CheckedData;
 
-            if (_counter >= checkedData.Count)
+            foreach (var data in checkedData)
             {
-                _counter = 0;
-                return;
+                _router.GoToDetail(data.Id);
             }
-
-            SomeData currentData = checkedData[_counter];
-            _counter++;
-            _router.GoToDetail(currentData.Id);
         }
     }
 }
