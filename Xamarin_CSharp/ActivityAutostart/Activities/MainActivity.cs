@@ -19,12 +19,6 @@ namespace ActivityAutostart
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-
             InitMainController();
             _controller.Subscribe();
         }
@@ -33,7 +27,7 @@ namespace ActivityAutostart
         {
             base.OnPause();
 
-            _controller.Unsubscribe();
+            //_controller.Unsubscribe();
         }
 
         private void InitMainController()

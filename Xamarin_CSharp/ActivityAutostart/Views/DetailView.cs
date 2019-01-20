@@ -43,6 +43,15 @@ namespace ActivityAutostart.Views
             });
         }
 
+        public void SetTitle(string title)
+        {
+            var titleView = FindViewById<TextView>(Resource.Id.detailContent);
+            (Context as Activity)?.RunOnUiThread(() =>
+            {
+                titleView.Text = title;
+            });
+        }
+
         public void SetTime(string time)
         {
             var textField = FindViewById<TextView>(Resource.Id.detailTimer);

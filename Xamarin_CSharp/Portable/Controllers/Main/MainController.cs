@@ -30,7 +30,7 @@ namespace Portable.Controllers.Main
             _view.OnButtonClicked += GoToSelector;
             _isSubscribed = true;
         }
-        
+
         public void Unsubscribe()
         {
             if (!_isSubscribed) return;
@@ -51,10 +51,10 @@ namespace Portable.Controllers.Main
             }
 
             int interval = TimingRepository.GetInstance().Interval;
-            Timer timer = new Timer(interval);
+            Timer timer = new Timer(interval * 1000 * 60);
             timer.Elapsed += NextInterval;
             timer.Start();
-            
+
             ShowNext();
         }
 

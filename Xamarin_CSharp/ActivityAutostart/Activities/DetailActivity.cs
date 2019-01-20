@@ -39,10 +39,15 @@ namespace ActivityAutostart.Activities
         private void InitController()
         {
             var view = FindViewById<DetailView>(Resource.Id.viewDetail);
-            var router = new DetailRouter(new WeakReference<Context>(this));
 
-            var controller = new DetailController(view, router);
+            var controller = new DetailController(view);
             controller.SetData(_id);
+            controller.OnReturn += GoBack;
+        }
+
+        private void GoBack()
+        {
+            RunOnUiThread(OnBackPressed);
         }
     }
 }

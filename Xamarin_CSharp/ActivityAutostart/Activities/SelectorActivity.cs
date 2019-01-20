@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using ActivityAutostart.Routers;
 using ActivityAutostart.Views;
 using Android.App;
 using Android.Content;
@@ -68,9 +66,8 @@ namespace ActivityAutostart.Activities
         private void InitController()
         {
             var view = FindViewById<SelectorView>(Resource.Id.selectorView);
-            var router = new SelectorRouter(new WeakReference<Context>(this));
 
-            _controller = new SelectorController(view, router);
+            _controller = new SelectorController(view);
             _controller.Init();
         }
 
@@ -96,6 +93,8 @@ namespace ActivityAutostart.Activities
             editor.PutInt(IntervalKey, interval);
             editor.PutInt(ShowingKey, showingTime);
             editor.Apply();
+
+            RunOnUiThread(OnBackPressed);
         }
     }
 }

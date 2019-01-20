@@ -10,15 +10,13 @@ namespace Portable.Controllers.Selector
     {
         private readonly List<DataModel> _dataModelsList;
         private ISelectorView _view;
-        private ISelectorRouter _router;
         private bool _isSubscribed = false;
 
         public event Action OnReturn;
 
-        public SelectorController(ISelectorView view, ISelectorRouter router)
+        public SelectorController(ISelectorView view)
         {
             _view = view ?? throw new ArgumentException(nameof(view));
-            _router = router ?? throw new ArgumentException(nameof(router));
             _dataModelsList = new List<DataModel>();
         }
         
@@ -110,7 +108,6 @@ namespace Portable.Controllers.Selector
         private void GoBack()
         {
             OnReturn?.Invoke();
-            _router.GoBack();
         }
     }
 }

@@ -7,8 +7,9 @@ namespace Portable.Controllers.Detail
 {
     public class DetailController : IDetailController
     {
+        public event Action OnReturn;
+        
         private IDetailView _view;
-        private IDetailRouter _router;
 
         private double _redTick;
         private double _greenTick;
@@ -20,10 +21,9 @@ namespace Portable.Controllers.Detail
 
         private double _time = 0;
 
-        public DetailController(IDetailView view, IDetailRouter router)
+        public DetailController(IDetailView view)
         {
             _view = view ?? throw new ArgumentException(nameof(view));
-            _router = router ?? throw new ArgumentException(nameof(router));
         }
 
         public void SetData(string id)
@@ -32,14 +32,15 @@ namespace Portable.Controllers.Detail
             var data = DataRepository.GetInstance().GetDataById(id);
 
             _view.SetColor((int)_red, (int)_green, (int)_blue);
+            _view.SetTitle(data.Name);
 
             _redTick = (255 - data.Red) * 1.0 / (showingTime * 60);
-            _redTick = (255 - data.Green) * 1.0 / (showingTime * 60);
-            _redTick = (255 - data.Blue) * 1.0 / (showingTime * 60);
+            _greenTick = (255 - data.Green) * 1.0 / (showingTime * 60);
+            _blueTick = (255 - data.Blue) * 1.0 / (showingTime * 60);
             int tick = 17;
 
             Timer timerChange = new Timer(tick);
-            Timer timerEnd = new Timer(showingTime);
+            Timer timerEnd = new Timer(showingTime * 1020);
 
             timerChange.AutoReset = true;
             timerChange.Elapsed += NextChange;
@@ -52,7 +53,7 @@ namespace Portable.Controllers.Detail
 
         private void GoBack(object sender, ElapsedEventArgs e)
         {
-            _router.GoBack();
+            OnReturn?.Invoke();
         }
 
         private void NextChange(object sender, ElapsedEventArgs e)
